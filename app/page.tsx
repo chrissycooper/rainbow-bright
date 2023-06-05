@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div id='circle' className={`rounded-full h-16 w-16 flex items-center justify-center ${colors[currentColor]}`}></div>
+      <div id='circle' className={`rounded-full h-56 w-56 flex m-8 items-center justify-center ${colors[currentColor]}`}></div>
       <input type="range" id="slider" name="slider"
          min="0" max="11" onChange={event => getColorValue(event)}>
       </input>
