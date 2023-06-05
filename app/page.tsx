@@ -3,10 +3,11 @@ import { ChangeEvent, useState } from 'react'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../tailwind.config.js'
 
-const fullConfig = resolveConfig(tailwindConfig)
+const fullConfig: ResolvedConfig<Config> = resolveConfig(tailwindConfig)
 
 export default function Home() {
   const [currentColor, setCurrentColor] = useState(0)
+  const [currentHex, setCurrentHex] = useState('')
 
   const colors = [
     'bg-cherry-red',
@@ -25,13 +26,14 @@ export default function Home() {
 
   const getColorValue = (event:ChangeEvent<HTMLInputElement>) => {
     setCurrentColor(parseInt(event.target.value))
-    console.log(fullConfig.theme.colors[colors[currentColor].slice(3)])
+    setCurrentHex(fullConfig.theme.colors[colors[currentColor].slice(3)])
   }
   
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div id='circle' className={`rounded-full h-56 w-56 flex m-8 items-center justify-center ${colors[currentColor]}`}></div>
+      <h1 className={`text-${colors[currentColor].slice(3)}`}>{currentHex}</h1>
       <input type="range" id="slider" name="slider"
          min="0" max="11" onChange={event => getColorValue(event)}>
       </input>
